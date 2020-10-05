@@ -1,0 +1,20 @@
+{
+  "name": "umaans-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lynn-Apedo/UMAANS-front.git"
+  },
+  "author": "Lynn APEDO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lynn-Apedo/UMAANS-front/issues"
+  },
+  "homepage": "https://github.com/Lynn-Apedo/UMAANS-front#readme",
+  "proxy": "http://localhost:2088"
+}

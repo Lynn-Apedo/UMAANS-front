@@ -1,5 +1,8 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-export default function Home() {
+function Home() {
   return <h1>Home</h1>;
 }
+
+export default withRouter(Home);

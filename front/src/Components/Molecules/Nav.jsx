@@ -15,6 +15,9 @@ export default function Nav() {
         <Link to="/signin">
           <li>Connexion</li>
         </Link>
+        <Link to="/projects">
+          <li>Ajouter un projets</li>
+        </Link>
       </ul>
     </nav>
   );

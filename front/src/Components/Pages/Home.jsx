@@ -1,8 +1,16 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import Agenda from "../Organisms/Agenda";
+import ScrollProjects from "../Organisms/ScrollProjects";
 function Home() {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <h1>Home</h1>
+      <Agenda />
+      <ScrollProjects />
+    </>
+  );
 }
 
 export default withRouter(Home);

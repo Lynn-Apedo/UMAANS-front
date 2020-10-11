@@ -1,0 +1,35 @@
+.agendaContainer {
+  background-color: $umaans-beige;
+  color: $umaans-green;
+  height: 30vh;
+  display: grid;
+  grid-template-columns: 5% 10% 5% 35% 5% 35% 5%;
+  grid-template-rows: 20% 60% 20%;
+  .eventContainer {
+    display: flex;
+    background-color: lightcoral;
+    justify-content: flex-start;
+  }
+  .event {
+    width: 25vw;
+  }
+  .eventOne {
+    grid-column: 6/7;
+    grid-row: 2/3;
+    background-color: lightcoral;
+  }
+  .eventTwo {
+    grid-column: 4/5;
+    grid-row: 2/3;
+    background-color: lightblue;
+  }
+  .sectionTitle {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  h3 {
+    font-size: 25px;
+    margin-bottom: 2%;
+  }
+}

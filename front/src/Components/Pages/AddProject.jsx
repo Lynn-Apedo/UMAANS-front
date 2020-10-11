@@ -14,25 +14,6 @@ export default function AddProject() {
     projectDescr: "",
     mainPicture: "",
   });
-  // const [categorie, setCategorie] = useState({
-  //   1: logement,
-  //   2: renovation,
-  //   3: commercialsBureaux,
-  //   4: equipementPublic,
-  //   5: education,
-  //   6: equipementSportif,
-  //   7: paysageUrbanisme,
-  // });
-
-  // const [categorie, setCategorie] = useState([1, 2, 3, 4, 5, 6, 7]);
-
-  // const handleChange = async (event) => {
-  //   const { value } = event.target.value;
-  //   setAddProject({
-  //     ...addProject,
-  //     categoryId: value,
-  //   });
-  // };
 
   const handleChange = async (event) => {
     const { name, value } = event.target;

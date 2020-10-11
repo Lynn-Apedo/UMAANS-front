@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   return (
     <nav>
-      <h2>UMAANS</h2>
       <ul className="nav-links">
         <Link to="/">
           <li>Accueil</li>
@@ -15,8 +14,11 @@ export default function Nav() {
         <Link to="/signin">
           <li>Connexion</li>
         </Link>
-        <Link to="/projects">
+        <Link to="/addproject">
           <li>Ajouter un projets</li>
+        </Link>
+        <Link to="/getprojects">
+          <li>Projets</li>
         </Link>
       </ul>
     </nav>

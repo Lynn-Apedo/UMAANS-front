@@ -1,4 +1,5 @@
 # UMAANS-front
 
-lancer React:
+lancer React: 
+  cd front
   npm start

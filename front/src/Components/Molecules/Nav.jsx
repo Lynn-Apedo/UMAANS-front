@@ -8,6 +8,9 @@ export default function Nav() {
         <Link to="/">
           <li>Accueil</li>
         </Link>
+        <Link to="/about">
+          <li>A Propos</li>
+        </Link>
         <Link to="/signup">
           <li>Inscription</li>
         </Link>

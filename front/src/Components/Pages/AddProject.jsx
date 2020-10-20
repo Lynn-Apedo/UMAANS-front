@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+
+// import ContextAuth from "../Context/ContextAuth";
+
+// import { useHistory } from "react-router-dom";
+// const { dispatch } = useContext(ContextAuth);
+
 // import { useEffect } from "react";
 
 export default function AddProject() {
@@ -23,143 +28,184 @@ export default function AddProject() {
     });
   };
 
-  const history = useHistory();
+  // const history = useHistory();
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const token = localStorage.getItem("token");
-    console.log("addProject", addProject);
     await axios({
       method: "post",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      url: "http://localhost:2088/api/projects",
+      url: "/api/addproject",
       data: addProject,
     });
-    history.push("/projects");
+
+    // var config = {
+    //   method: "post",
+    //   url: "http://localhost:2088/api/addproject",
+    //   headers: {
+    //     Authorization: localStorage.getItem("token"),
+    //   },
+    // };
+
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.data));
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 
   return (
     <>
-      <h1>Ajouter un ajouter un projet:</h1>;
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="architect">Architecte(s) ou autres:</label>
-        <input
-          type="architect"
-          value={addProject.architect}
-          name="architect"
-          id="architect"
-          onChange={handleChange}
-          required
-        />
+      <div className="formContainer">
+        <h2 className="formContainer_titlePage">Ajouter un projet:</h2>;
+        <form onSubmit={handleSubmit} className="formContainer_form">
+          <label htmlFor="architect" className="formContainer_labels">
+            Architecte(s) ou autres:
+          </label>
+          <input
+            type="architect"
+            value={addProject.architect}
+            name="architect"
+            id="architect"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="size">Superficie du projet:</label>
-        <input
-          type="number"
-          value={addProject.size}
-          name="size"
-          id="size"
-          onChange={handleChange}
-          required
-          min="0"
-        />
+          <label htmlFor="size" className="formContainer_labels">
+            Superficie du projet:
+          </label>
+          <input
+            type="number"
+            value={addProject.size}
+            name="size"
+            id="size"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+            min="0"
+          />
 
-        <label htmlFor="year">Année du projet:</label>
-        <input
-          type="number"
-          value={addProject.year}
-          name="year"
-          id="year"
-          onChange={handleChange}
-          required
-          min="0"
-        />
+          <label htmlFor="year" className="formContainer_labels">
+            Année du projet:
+          </label>
+          <input
+            type="number"
+            value={addProject.year}
+            name="year"
+            id="year"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+            min="0"
+          />
 
-        <label htmlFor="categoryId">Catégorie du projet:</label>
-        <select
-          name="categoryId"
-          id="categoryId"
-          value={addProject.categoryId}
-          onChange={handleChange}
-          required
-        >
-          <option name="logement" value="1">
-            logement
-          </option>
-          <option name="renovation" value="2">
-            rénovation
-          </option>
-          <option name="commercialsBureaux" value="3">
-            commercials et bureaux
-          </option>
-          <option name="equipementPublic" value="4">
-            équipement public
-          </option>
-          <option name="education" value="5">
-            éducation
-          </option>
-          <option name="equipementSportif" value="6">
-            équipement sportif
-          </option>
-          <option name="paysageUrbanisme" value="7">
-            paysage et urbanisme
-          </option>
-        </select>
+          <label htmlFor="categoryId" className="formContainer_labels">
+            Catégorie du projet:
+          </label>
+          <select
+            name="categoryId"
+            id="categoryId"
+            className="formContainer_inputs"
+            value={addProject.categoryId}
+            onChange={handleChange}
+            required
+          >
+            <option name="logement" value="1">
+              logement
+            </option>
+            <option name="renovation" value="2">
+              rénovation
+            </option>
+            <option name="commercialsBureaux" value="3">
+              commercials et bureaux
+            </option>
+            <option name="equipementPublic" value="4">
+              équipement public
+            </option>
+            <option name="education" value="5">
+              éducation
+            </option>
+            <option name="equipementSportif" value="6">
+              équipement sportif
+            </option>
+            <option name="paysageUrbanisme" value="7">
+              paysage et urbanisme
+            </option>
+          </select>
 
-        <label htmlFor="countryId">Pays du projet:</label>
-        <select
-          name="countryId"
-          id="countryId"
-          value={addProject.countryId}
-          onChange={handleChange}
-          required
-        >
-          <option name="France" value="1">
-            France
-          </option>
-          <option name="Inde" value="2">
-            Inde
-          </option>
-          <option name="Colombie" value="3">
-            Colombie
-          </option>
-        </select>
+          <label htmlFor="countryId" className="formContainer_labels">
+            Pays du projet:
+          </label>
+          <select
+            name="countryId"
+            id="countryId"
+            className="formContainer_inputs"
+            value={addProject.countryId}
+            onChange={handleChange}
+            required
+          >
+            <option name="France" value="1">
+              France
+            </option>
+            <option name="Inde" value="2">
+              Inde
+            </option>
+            <option name="Colombie" value="3">
+              Colombie
+            </option>
+          </select>
 
-        <label htmlFor="title">Titre du projet:</label>
-        <input
-          type="text"
-          value={addProject.title}
-          name="title"
-          id="title"
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="title" className="formContainer_labels">
+            Titre du projet:
+          </label>
+          <input
+            type="text"
+            value={addProject.title}
+            name="title"
+            id="title"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="projectDescr">Description:</label>
-        <input
-          type="text"
-          value={addProject.projectDescr}
-          name="projectDescr"
-          id="projectDescr"
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="projectDescr" className="formContainer_labels">
+            Description:
+          </label>
+          <textarea
+            type="text"
+            value={addProject.projectDescr}
+            name="projectDescr"
+            id="projectDescr"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="mainPicture">Photos:</label>
-        <input
-          type="text"
-          value={addProject.mainPicture}
-          name="mainPicture"
-          id="mainPicture"
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="mainPicture" className="formContainer_labels">
+            Photos (url):
+          </label>
+          <input
+            type="text"
+            value={addProject.mainPicture}
+            name="mainPicture"
+            id="mainPicture"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+          />
 
-        <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
-          Envoyer
-        </button>
-      </form>
+          <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
+            Envoyer
+          </button>
+        </form>
+      </div>
     </>
   );
 }

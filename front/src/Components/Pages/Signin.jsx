@@ -46,30 +46,38 @@ export default function Signin() {
 
   return (
     <>
-      <h1>Signin</h1>;
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          value={signin.email}
-          name="email"
-          id="email"
-          onChange={handleChange}
-          required
-        />
+      <div className="formContainer">
+        <h2 className="formContainer_titlePage">Signin</h2>;
+        <form onSubmit={handleSubmit} className="formContainer_form">
+          <label htmlFor="email" className="formContainer_labels">
+            Email:
+          </label>
+          <input
+            type="email"
+            value={signin.email}
+            name="email"
+            id="email"
+            className="formContainer_inputs"
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="password">Mot de passe:</label>
-        <input
-          type="password"
-          value={signin.password}
-          name="password"
-          onChange={handleChange}
-        />
+          <label htmlFor="password" className="formContainer_labels">
+            Mot de passe:
+          </label>
+          <input
+            type="password"
+            value={signin.password}
+            name="password"
+            className="formContainer_inputs"
+            onChange={handleChange}
+          />
 
-        <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
-          Envoyer
-        </button>
-      </form>
+          <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
+            Envoyer
+          </button>
+        </form>
+      </div>
     </>
   );
 }

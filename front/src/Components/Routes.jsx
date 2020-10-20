@@ -6,10 +6,18 @@ import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import AddProject from "./Pages/AddProject";
 import Projects from "./Pages/Projects";
+import Project from "./Pages/Project";
+import About from "./Pages/About";
 
 export default function Routes() {
   return (
     <Switch>
+      <Routes exact path="/projects/:projectId">
+        <Project />
+      </Routes>
+      <Routes exact path="/about">
+        <About />
+      </Routes>
       <Route exact path="/getprojects">
         <Projects />
       </Route>

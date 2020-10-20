@@ -1,9 +1,10 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 import Agenda from "../Organisms/Agenda";
 import ScrollProjects from "../Organisms/ScrollProjects";
-function Home() {
+
+export default function Home() {
   return (
     <>
       <h1>Home</h1>
@@ -13,4 +14,14 @@ function Home() {
   );
 }
 
-export default withRouter(Home);
+// function Home() {
+//   return (
+//     <>
+//       <h1>Home</h1>
+//       <Agenda />
+//       <ScrollProjects />
+//     </>
+//   );
+// }
+
+// export default withRouter(Home);

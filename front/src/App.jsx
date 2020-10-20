@@ -28,6 +28,9 @@ const reducer = (state, action) => {
         token: null,
         user: null,
       };
+    case "ADDPROJECT":
+      localStorage.getItem("token");
+      break;
     default:
       return state;
   }

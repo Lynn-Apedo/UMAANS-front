@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import FormData from "form-data";
 
 export default function Projects() {
@@ -26,14 +26,42 @@ export default function Projects() {
         console.log(error.response);
       });
   }, []);
+
   return (
     <>
-      <div className="projectsContainer">
-        {projects.map((project, i) => (
-          <div key={i} className="projectsContainer_content">
-            <p>{project.architect}</p>
-          </div>
-        ))}
+      <div className="main">
+        <h2 className="main_titlePage">projets</h2>
+        <div className="main_projectsContainer">
+          {projects.map((project, i) => (
+            <div key={i} className="main_projectsContainer_projectContainer">
+              <Link
+                className="main_projectsContainer_projectContainer"
+                to={`/projects/${project.id}`}
+              >
+                <img
+                  className="main_projectsContainer_projectContainer_img"
+                  src={project.mainPicture}
+                  alt="couverture"
+                />
+                <div className="main_projectsContainer_projectContainer_fiche">
+                  <p className="main_projectsContainer_projectContainer_fiche_country">
+                    {project["Country.countryName"]}
+                  </p>
+                  <p className="main_projectsContainer_projectContainer_fiche_titleArchitectes">
+                    {project.title} - {project.architect}
+                  </p>
+                </div>
+                {/* <button
+              onChange={() => {
+                console.log(project.id);
+              }}
+            >
+              Add a bookmark
+            </button> */}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

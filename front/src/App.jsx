@@ -44,11 +44,11 @@ export default function App() {
   };
 
   return (
-    <Router>
-      <ContextAuth.Provider value={contextAuth}>
+    <ContextAuth.Provider value={contextAuth}>
+      <Router>
         <Header />
         <Routes />
-      </ContextAuth.Provider>
-    </Router>
+      </Router>
+    </ContextAuth.Provider>
   );
 }

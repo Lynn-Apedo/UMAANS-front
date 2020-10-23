@@ -8,18 +8,22 @@ import AddProject from "./Pages/AddProject";
 import Projects from "./Pages/Projects";
 import Project from "./Pages/Project";
 import About from "./Pages/About";
+import Profil from "./Pages/Profil";
 
 export default function Routes() {
   return (
     <Switch>
-      <Routes exact path="/projects/:projectId">
-        <Project />
-      </Routes>
-      <Routes exact path="/about">
+      <Route exact path="/profil">
+        <Profil />
+      </Route>
+      <Route exact path="/about">
         <About />
-      </Routes>
-      <Route exact path="/getprojects">
+      </Route>
+      <Route exact path="/projects">
         <Projects />
+      </Route>
+      <Route exact path="/projects/:projectId">
+        <Project />
       </Route>
       <Route exact path="/addproject">
         <AddProject />

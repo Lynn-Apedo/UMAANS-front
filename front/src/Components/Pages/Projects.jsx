@@ -9,6 +9,8 @@ export default function Projects() {
   // const { id } = useParams();
 
   useEffect(() => {
+    console.log("project 1");
+
     var config = {
       method: "get",
       url: "http://localhost:2088/api/getprojects",
@@ -19,7 +21,7 @@ export default function Projects() {
 
     axios(config)
       .then(function (response) {
-        console.log(response.data.projectFound);
+        console.log("res.data.proj:", response.data.projectFound);
         setProjects(response.data.projectFound);
       })
       .catch(function (error) {
@@ -35,7 +37,7 @@ export default function Projects() {
           {projects.map((project, i) => (
             <div key={i} className="main_projectsContainer_projectContainer">
               <Link
-                className="main_projectsContainer_projectContainer"
+                className="main_projectsContainer_projectContainer_link"
                 to={`/projects/${project.id}`}
               >
                 <img
@@ -45,19 +47,20 @@ export default function Projects() {
                 />
                 <div className="main_projectsContainer_projectContainer_fiche">
                   <p className="main_projectsContainer_projectContainer_fiche_country">
-                    {project["Country.countryName"]}
+                    {project["Category.categoryName"]} <spans>&#45; </spans>
+                    {project["Country.countryName"]}{" "}
                   </p>
                   <p className="main_projectsContainer_projectContainer_fiche_titleArchitectes">
                     {project.title} - {project.architect}
                   </p>
                 </div>
                 {/* <button
-              onChange={() => {
-                console.log(project.id);
-              }}
-            >
-              Add a bookmark
-            </button> */}
+                      onChange={() => {
+                        console.log(project.id);
+                      }}
+                    >
+                      Add a bookmark
+                    </button> */}
               </Link>
             </div>
           ))}

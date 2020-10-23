@@ -20,8 +20,11 @@ export default function Nav() {
         <Link to="/addproject">
           <li>Ajouter un projets</li>
         </Link>
-        <Link to="/getprojects">
+        <Link to="/projects">
           <li>Projets</li>
+        </Link>
+        <Link to="/profil">
+          <li>Profil</li>
         </Link>
       </ul>
     </nav>

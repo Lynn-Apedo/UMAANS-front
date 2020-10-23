@@ -7,7 +7,6 @@ import ScrollProjects from "../Organisms/ScrollProjects";
 export default function Home() {
   return (
     <>
-      <h1>Home</h1>
       <Agenda />
       <ScrollProjects />
     </>

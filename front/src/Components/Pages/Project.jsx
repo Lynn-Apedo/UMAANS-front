@@ -6,12 +6,15 @@ import { useParams } from "react-router-dom";
 export default function Project() {
   const [project, setProject] = useState([]);
   const { id } = useParams();
+  console.log("project:", project);
+  console.log("project2:", project.projectFound);
 
   useEffect(() => {
     var config = {
       method: "get",
       url: `http://localhost:2088/api/projects/${id}`,
     };
+    console.log("ok");
 
     axios(config)
       .then(function (response) {
@@ -21,6 +24,7 @@ export default function Project() {
       .catch(function (error) {
         console.log(error.response);
       });
+    console.log(id);
   }, [id]);
 
   // useEffect(() => {
@@ -36,6 +40,7 @@ export default function Project() {
   // }, [id]);
 
   console.log("result of setProject 1:", project);
+  console.log("result of setProject 1:", project.projecf);
 
   return (
     <>

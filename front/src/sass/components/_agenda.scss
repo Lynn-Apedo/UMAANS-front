@@ -3,33 +3,37 @@
   color: $umaans-green;
   height: 30vh;
   display: grid;
-  grid-template-columns: 5% 10% 5% 35% 5% 35% 5%;
-  grid-template-rows: 20% 60% 20%;
-  .eventContainer {
-    display: flex;
-    background-color: lightcoral;
-    justify-content: flex-start;
-  }
-  .event {
-    width: 25vw;
-  }
-  .eventOne {
-    grid-column: 6/7;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 20% 70%;
+  padding-top: 2%;
+  // margin: 8% 0;
+  &_titlePage {
+    grid-column: 1/2;
     grid-row: 2/3;
-    background-color: lightcoral;
+    margin: 0 25%;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    // background-color: greenyellow;
   }
-  .eventTwo {
-    grid-column: 4/5;
-    grid-row: 2/3;
-    background-color: lightblue;
-  }
-  .sectionTitle {
+  &_events {
     grid-column: 2/3;
     grid-row: 2/3;
-  }
+    display: flex;
+    // border: 3px solid red;
+    justify-content: space-between;
+    height: auto;
+    margin-right: 10%;
+    &_eventOne {
+      // background-color: lightcoral;
+      width: 42%;
+    }
+    &_eventTwo {
+      // grid-column: 2/3;
+      // grid-row: 2/3;
+      width: 42%;
 
-  h3 {
-    font-size: 25px;
-    margin-bottom: 2%;
+      // background-color: lightblue;
+    }
   }
 }

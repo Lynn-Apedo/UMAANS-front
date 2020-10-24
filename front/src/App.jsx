@@ -1,6 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./sass/App.scss";
+
+// import { useParams } from "react-router-dom";
 
 // import Nav from "./Components/Molecules/Nav";
 
@@ -8,11 +10,18 @@ import "./sass/App.scss";
 import Header from "./Components/Organisms/Header";
 import Routes from "./Components/Routes";
 import ContextAuth from "./Components/Context/ContextAuth";
+import axios from "axios";
+
+// const initialState = {
+//   isAuthenticated: !!localStorage.getItem("token"),
+//   user: JSON.parse(localStorage.getItem("user")) || {},
+//   token: localStorage.getItem("token") || {},
+// };
 
 const initialState = {
-  isAuthenticated: !!localStorage.getItem("token"),
-  user: JSON.parse(localStorage.getItem("user")) || {},
-  token: localStorage.getItem("token") || {},
+  isAuthenticated: false,
+  token: null,
+  user: null,
 };
 
 const reducer = (state, action) => {
@@ -24,13 +33,27 @@ const reducer = (state, action) => {
       console.log("User : ", action.payload.data.user);
       return {
         ...state,
+        isAuthenticated: true,
+        token: action.payload.data.token,
+        user: action.payload.data.user,
+      };
+    case "LOGOUT":
+      localStorage.clear();
+      return {
+        ...state,
         isAuthenticated: false,
-        token: null,
         user: null,
       };
     case "ADDPROJECT":
       localStorage.getItem("token");
       break;
+    case "LOAD_USER":
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+
     default:
       return state;
   }
@@ -42,6 +65,36 @@ export default function App() {
     state,
     dispatch,
   };
+
+  const token = localStorage.getItem("token");
+  console.log("fetchUser -> token", token);
+  const user = localStorage.getItem("user");
+  console.log("user", user);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const result = await axios.get(
+          `http://localhost:8001/api/user/${user.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("fetchUser -> result", result);
+        if (result.status === 200) {
+          dispatch({
+            type: "LOAD_USER",
+            payload: result.data,
+          });
+        }
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <ContextAuth.Provider value={contextAuth}>

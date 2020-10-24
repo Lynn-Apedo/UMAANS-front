@@ -22,7 +22,7 @@ export default function Routes() {
       <Route exact path="/projects">
         <Projects />
       </Route>
-      <Route exact path="/projects/:projectId">
+      <Route exact path="/projects/:id">
         <Project />
       </Route>
       <Route exact path="/addproject">

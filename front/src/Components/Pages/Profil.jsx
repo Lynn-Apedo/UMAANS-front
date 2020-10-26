@@ -21,7 +21,7 @@ export default function Profil() {
 
     var config = {
       method: "get",
-      url: `http://localhost:2088/api/getprofil/${user.id}`,
+      url: `http://localhost:2088/api/user/${user.id}`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -29,10 +29,7 @@ export default function Profil() {
 
     axios(config)
       .then(function (response) {
-        console.log(
-          "PROFIL AXIOS res. :=======",
-          response.data.userFound.Projects
-        );
+        console.log("PROFIL AXIOS res. :=======", response.data.userFound);
 
         // console.log(
         //   "PROFIL AXIOS res.data.profil NEWUSER:=======",
@@ -40,7 +37,7 @@ export default function Profil() {
         // );
         // console.log("PROFIL AXIOS res.data.profil :=======", response.data);
 
-        setProfils(response.data.userFound.Projects);
+        setProfils(response.data.userFound);
         // console.log("Profil -> PROFIL setProfils, setProfils);
       })
       .catch(function (error) {
@@ -61,72 +58,9 @@ export default function Profil() {
             {profils.email}
           </p>
         </div>
-        <div className="profilContainer_crud">
-          <button>Modifier profil</button>
-          <button>Supprimer profil</button>
-        </div>
       </div>
-      {/* <ProjectByUserId /> */}
 
-      {/* <div className="maaaaap">{profils["Project.architect"]}</div> */}
-
-      <div className="main_projectsContainer">
-        {profils.map((project) => (
-          <div className="main_projectsContainer_projectContainer">
-            <p>{project.architect}</p>
-            <Link
-              className="savedProjectContainer_projectsContainer_projectContainer_link"
-              to={`/projects/${project.id}`}
-            >
-              <img
-                className="savedProjectContainer_projectsContainer_projectContainer_img"
-                src={project.mainPicture}
-                alt="couverture"
-              />
-              <div className="savedProjectContainer_projectsContainer_projectContainer_fiche">
-                <p className="savedProjectContainer_projectsContainer_projectContainer_fiche_country">
-                  {project["Category.categoryName"]} <spans>&#45; </spans>
-                  {project["Country.countryName"]}
-                </p>
-                <p className="savedProjectContainer_projectsContainer_projectContainer_fiche_titleArchitectes">
-                  {project.title} - {project.architect}
-                </p>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
-      {/* <div className="savedProjectContainer">
-        <h2 className="savedProjectContainer_titlePage">projets enregistrés</h2>
-        <div className="savedProjectContainer_projectsContainer">
-          {projects.map((project, i) => (
-            <div
-              key={i}
-              className="savedProjectContainer_projectsContainer_projectContainer"
-            >
-              <Link
-                className="savedProjectContainer_projectsContainer_projectContainer_link"
-                to={`/projects/${project.id}`}
-              >
-                <img
-                  className="savedProjectContainer_projectsContainer_projectContainer_img"
-                  src={project.mainPicture}
-                  alt="couverture"
-                />
-                <div className="savedProjectContainer_projectsContainer_projectContainer_fiche">
-                  <p className="savedProjectContainer_projectsContainer_projectContainer_fiche_country">
-                    {project["Category.categoryName"]} <spans>&#45; </spans>
-                    {project["Country.countryName"]}
-                  </p>
-                  <p className="savedProjectContainer_projectsContainer_projectContainer_fiche_titleArchitectes">
-                    {project.title} - {project.architect}
-                  </p>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div> */}
+      <ProjectByUserId />
     </>
   );
 }

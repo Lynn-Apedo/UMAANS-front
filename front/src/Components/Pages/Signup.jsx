@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Signup() {
+  const history = useHistory();
+
   const [signup, setSignup] = useState({
     firstName: "",
     lastName: "",
@@ -23,6 +26,7 @@ export default function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await axios.post("/api/signup", signup);
+    history.push("/signin");
   };
   return (
     <>

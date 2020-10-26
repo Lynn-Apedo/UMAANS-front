@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+// import { useHistory } from "react-router-dom";
 
 // import ContextAuth from "../Context/ContextAuth";
 
@@ -42,24 +43,34 @@ export default function AddProject() {
       url: "/api/addproject",
       data: addProject,
     });
+    // history.push("/projects");
 
     // var config = {
     //   method: "post",
     //   url: "http://localhost:2088/api/addproject",
     //   headers: {
-    //     Authorization: localStorage.getItem("token"),
+    //     Authorization: "Bearer " + localStorage.getItem("token"),
     //   },
     // };
 
     // axios(config)
     //   .then(function (response) {
-    //     console.log(JSON.stringify(response.data));
+    //     console.log("ADDPROJECT response:", JSON.stringify(response.data));
     //   })
     //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    //     console.log("ADDPROJECT erreur catcher", error);
+
+    //     let Error = "il y a une erreur";
+    //     console.log("handleSubmit -> ADDPROJECT Error=============", Error);
+    //     console.log("handleSubmit -> ADDPROJECT error", error.response);
+    //   }),
+    //   history.push("/projects");
   };
 
+  let error = "A";
+  if (error) {
+    error = <p>hfkshfkjdshkjfhdskjh</p>;
+  }
   return (
     <>
       <div className="formContainer">
@@ -160,6 +171,33 @@ export default function AddProject() {
             <option name="Colombie" value="3">
               Colombie
             </option>
+            <option name="Colombie" value="4">
+              Brésil
+            </option>
+            <option name="Colombie" value="5">
+              Chine
+            </option>
+            <option name="Colombie" value="6">
+              Thailande
+            </option>
+            <option name="Colombie" value="7">
+              Australie
+            </option>
+            <option name="Colombie" value="9">
+              Danemark
+            </option>
+            <option name="Colombie" value="8">
+              Singapour
+            </option>
+            <option name="Colombie" value="10">
+              Angleterre
+            </option>
+            <option name="Colombie" value="11">
+              Taiwan
+            </option>
+            <option name="Colombie" value="12">
+              Indonésie
+            </option>
           </select>
 
           <label htmlFor="title" className="formContainer_labels">
@@ -201,6 +239,7 @@ export default function AddProject() {
             required
           />
 
+          {/* {error} */}
           <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
             Envoyer
           </button>

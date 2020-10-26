@@ -9,6 +9,7 @@ import Projects from "./Pages/Projects";
 import Project from "./Pages/Project";
 import About from "./Pages/About";
 import Profil from "./Pages/Profil";
+import ProjectByUserId from "./Pages/ProjectByUserId";
 
 export default function Routes() {
   return (
@@ -21,6 +22,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/projects">
         <Projects />
+      </Route>
+      <Route exact path="/projects/ofuser/:id">
+        <ProjectByUserId />
       </Route>
       <Route exact path="/projects/:id">
         <Project />

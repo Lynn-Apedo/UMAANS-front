@@ -9,8 +9,6 @@ export default function Projects() {
   // const { id } = useParams();
 
   useEffect(() => {
-    console.log("project 1");
-
     var config = {
       method: "get",
       url: "http://localhost:2088/api/getprojects",
@@ -21,11 +19,11 @@ export default function Projects() {
 
     axios(config)
       .then(function (response) {
-        console.log("res.data.proj:", response.data.projectFound);
+        console.log("PROJECTS res.data.proj:", response.data.projectFound);
         setProjects(response.data.projectFound);
       })
       .catch(function (error) {
-        console.log(error.response);
+        console.log("PROJECTS error axios:", error.response);
       });
   }, []);
 

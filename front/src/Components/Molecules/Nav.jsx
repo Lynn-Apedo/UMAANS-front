@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import login from "../Organisms/img/login.png";
 import ContextAuth from "../Context/ContextAuth";
 
 export default function Nav() {
@@ -11,7 +10,7 @@ export default function Nav() {
   };
 
   useEffect(() => {
-    state.user && console.log(state.user.firstName);
+    state.user && console.log("NAV state user:", state.user.firstName);
     return () => {};
   }, [state]);
 

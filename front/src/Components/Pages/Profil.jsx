@@ -2,47 +2,46 @@ import React from "react";
 import axios from "axios";
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import ProjectByUserId from "./ProjectByUserId";
+// import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 export default function Profil() {
   const [profils, setProfils] = useState([]);
-  // const [projects, setProjects] = useState([]);
-  const { id } = useParams();
-
-  // useEffect(() => {
-  //   console.log("project 1");
-
-  //   var config = {
-  //     method: "get",
-  //     url: "http://localhost:2088/api/getprojects",
-  //   };
-
-  //   axios(config)
-  //     .then(function (response) {
-  //       console.log("res.data.proj:", response.data.projectFound);
-  //       setProjects(response.data.projectFound);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error.response);
-  //     });
-  // }, []);
+  // const { id } = useParams();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("fetchUser -> token PROFIL ===", token);
+    const user = localStorage.getItem("user");
+    console.log("user PROFIL ===", user);
+    console.log("user.id PROFIL ===", user.id);
+
     var config = {
       method: "get",
-      url: `http://localhost:2088/api/user/${id}`,
+      url: `http://localhost:2088/api/user/${user.id}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     };
 
     axios(config)
       .then(function (response) {
-        console.log("res.data.proj:", response.data.newUser);
-        setProfils(response.data.newUser);
+        console.log("PROFIL AXIOS res. :=======", response);
+
+        console.log(
+          "PROFIL AXIOS res.data.profil NEWUSER:=======",
+          response.data.newUser
+        );
+        console.log("PROFIL AXIOS res.data.profil :=======", response.data);
+
+        setProfils(response.data.userFound);
+        console.log("Profil -> PROFIL setProfils NEWUSER", setProfils);
       })
       .catch(function (error) {
-        console.log(error.response);
+        console.log("PROFIL error axios catch:", error.response);
       });
-  }, [id]);
+  }, []);
 
   return (
     <>
@@ -51,20 +50,14 @@ export default function Profil() {
         <div className="profilContainer_infoContainer">
           <p className="profilContainer_infoContainer_profilName">
             {" "}
-            nom de l'user {profils.firstName}
+            {profils.firstName} {profils.lastName}
           </p>
           <p className="profilContainer_infoContainer_entrepriseName">
-            nom de l'entreprise: ??
-          </p>
-          <p className="profilContainer_infoContainer_savedProject">
-            {" "}
-            Projet enregistrés: ??
-          </p>
-          <p className="profilContainer_infoContainer_postedProject">
-            Projets publiés: ??
+            {profils.email}
           </p>
         </div>
       </div>
+      <ProjectByUserId />
       {/* <div className="savedProjectContainer">
         <h2 className="savedProjectContainer_titlePage">projets enregistrés</h2>
         <div className="savedProjectContainer_projectsContainer">

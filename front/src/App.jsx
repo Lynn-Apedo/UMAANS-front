@@ -30,7 +30,7 @@ const reducer = (state, action) => {
     case "LOGIN":
       localStorage.setItem("token", action.payload.data.token);
       localStorage.setItem("user", JSON.stringify(action.payload.data.user));
-      console.log("User : ", action.payload.data.user);
+      console.log("APP User : ", action.payload.data.user);
       return {
         ...state,
         isAuthenticated: true,
@@ -67,9 +67,9 @@ export default function App() {
   };
 
   const token = localStorage.getItem("token");
-  console.log("fetchUser -> token", token);
+  console.log("fetchUser -> APP token", token);
   const user = localStorage.getItem("user");
-  console.log("user", user);
+  console.log("APP user", user);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -82,7 +82,7 @@ export default function App() {
             },
           }
         );
-        console.log("fetchUser -> result", result);
+        console.log("fetchUser -> APP result", result);
         if (result.status === 200) {
           dispatch({
             type: "LOAD_USER",
@@ -90,11 +90,11 @@ export default function App() {
           });
         }
       } catch (error) {
-        console.log(error.response);
+        console.log("APP error fetch:", error.response);
       }
     };
     fetchUser();
-  }, []);
+  });
 
   return (
     <ContextAuth.Provider value={contextAuth}>

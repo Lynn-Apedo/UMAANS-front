@@ -2,8 +2,11 @@ import React from "react";
 import { useState, useContext } from "react";
 import axios from "axios";
 import ContextAuth from "../Context/ContextAuth";
+import { useHistory } from "react-router-dom";
 
 export default function Signin() {
+  const history = useHistory();
+
   const [signin, setSignin] = useState({
     email: "",
     password: "",
@@ -30,10 +33,14 @@ export default function Signin() {
       });
       const res = await axios.post("http://localhost:2088/api/signin", signin);
       if (res.status === 200) {
-        return dispatch({
-          type: "LOGIN",
-          payload: res,
-        });
+        return (
+          dispatch({
+            type: "LOGIN",
+            payload: res,
+          }),
+          history.push("/"),
+          console.log("SIGNIN gooood")
+        );
       }
     } catch (error) {
       setSignin({
@@ -41,6 +48,7 @@ export default function Signin() {
         isSubmitting: false,
         errorMessage: error.message || error.statusText,
       });
+      console.log("SININ submit error 1:", error);
     }
   };
 

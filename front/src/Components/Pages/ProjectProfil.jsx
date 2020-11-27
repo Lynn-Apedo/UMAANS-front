@@ -2,17 +2,18 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Project() {
   const [project, setProject] = useState([]);
   const { id } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     var config = {
       method: "get",
       url: `http://localhost:2088/api/projects/${id}`,
     };
-    console.log("PROJECT ok");
 
     axios(config)
       .then(function (response) {
@@ -22,6 +23,28 @@ export default function Project() {
         console.log("PROJECT error axios:", error.response);
       });
   }, [id]);
+
+  const projectId = project.id;
+
+  const deleteProject = async () => {
+    console.log("PEACE");
+    var config = {
+      method: "delete",
+      url: `http://localhost:2088/api/projects/${projectId}`,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        setProject(response.data);
+      })
+      .catch(function (error) {
+        console.log("DELETE error axios:", error.response);
+      });
+    history.push("/profil");
+  };
 
   return (
     <>
@@ -35,17 +58,20 @@ export default function Project() {
           />
           <br />
           <br />
-
           <div className="main_projectContainer_ficheProject">
             <p className="main_projectContainer_archi">{project.architect}</p>
-            <p className="lighter">Superficie: {project.size} m²</p>
-            <p className="lighter">Années: {project.year}</p>
+            <p>Superficie: {project.size} m²</p>
+            <p>Années: {project.year}</p>
             <br />
             <p className="main_projectContainer_titleBuilding">
               {project.title}
             </p>
-            <p className="lighter">{project.projectDescr}</p>
-            <Link to="/">
+            <p>{project.projectDescr}</p>
+
+            <button className="btn btnCard" onClick={deleteProject}>
+              SUPPRIMER
+            </button>
+            <Link to="/profil">
               <button className="btn btnCard">RETOUR</button>
             </Link>
           </div>

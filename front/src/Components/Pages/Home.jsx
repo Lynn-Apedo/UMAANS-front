@@ -14,15 +14,3 @@ export default function Home() {
     </>
   );
 }
-
-// function Home() {
-//   return (
-//     <>
-//       <h1>Home</h1>
-//       <Agenda />
-//       <ScrollProjects />
-//     </>
-//   );
-// }
-
-// export default withRouter(Home);

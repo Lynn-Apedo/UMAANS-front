@@ -7,9 +7,10 @@ import Signin from "./Pages/Signin";
 import AddProject from "./Pages/AddProject";
 import Projects from "./Pages/Projects";
 import Project from "./Pages/Project";
+import ProjectProfil from "./Pages/ProjectProfil";
 import About from "./Pages/About";
 import Profil from "./Pages/Profil";
-import ProjectByUserId from "./Pages/ProjectByUserId";
+import EditProject from "./Pages/EditProject";
 
 export default function Routes() {
   return (
@@ -23,11 +24,14 @@ export default function Routes() {
       <Route exact path="/projects">
         <Projects />
       </Route>
-      <Route exact path="/projects/ofuser/:id">
-        <ProjectByUserId />
+      <Route exact path="/editproject/:id">
+        <EditProject />
       </Route>
       <Route exact path="/projects/:id">
         <Project />
+      </Route>
+      <Route exact path="/projectprofil/:id">
+        <ProjectProfil />
       </Route>
       <Route exact path="/addproject">
         <AddProject />

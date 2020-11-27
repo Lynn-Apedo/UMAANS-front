@@ -24,67 +24,75 @@ export default function Signin() {
 
   const { dispatch } = useContext(ContextAuth);
   const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      event.preventDefault();
       setSignin({
         ...signin,
         isSubmitting: true,
         errorMessage: null,
       });
+
       const res = await axios.post("http://localhost:2088/api/signin", signin);
+
       if (res.status === 200) {
         return (
           dispatch({
             type: "LOGIN",
             payload: res,
           }),
-          history.push("/"),
-          console.log("SIGNIN gooood")
+          history.push("/")
         );
+      } else {
+        console.log("erreur");
       }
     } catch (error) {
       setSignin({
         ...signin,
         isSubmitting: false,
-        errorMessage: error.message || error.statusText,
+        errorMessage: error.response.data.description,
       });
-      console.log("SININ submit error 1:", error);
     }
   };
 
   return (
     <>
-      <div className="formContainer">
-        <h2 className="formContainer_titlePage">Signin</h2>;
-        <form onSubmit={handleSubmit} className="formContainer_form">
-          <label htmlFor="email" className="formContainer_labels">
-            Email:
-          </label>
-          <input
-            type="email"
-            value={signin.email}
-            name="email"
-            id="email"
-            className="formContainer_inputs"
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="password" className="formContainer_labels">
-            Mot de passe:
-          </label>
-          <input
-            type="password"
-            value={signin.password}
-            name="password"
-            className="formContainer_inputs"
-            onChange={handleChange}
-          />
-
-          <button type="submit" value="Envoyer" id="btn" onClick={handleSubmit}>
-            Envoyer
-          </button>
-        </form>
+      <div className="bsignin">
+        <div className="bsignin_formContainer">
+          <h2 className="bsignin_formContainer_titlePage">Connexion</h2>
+          <form onSubmit={handleSubmit} className="bsignin_formContainer_form">
+            <label htmlFor="email" className="bsignin_formContainer_labels">
+              Email:
+            </label>
+            <input
+              type="email"
+              value={signin.email}
+              name="email"
+              id="email"
+              className="bsignin_formContainer_inputs"
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="password" className="bsignin_formContainer_labels">
+              Mot de passe:
+            </label>
+            <input
+              type="password"
+              value={signin.password}
+              name="password"
+              className="bsignin_formContainer_inputs"
+              onChange={handleChange}
+            />
+            {signin.errorMessage}
+            <button
+              type="submit"
+              value="Envoyer"
+              className="bsignin_btn btnForm"
+              onClick={handleSubmit}
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

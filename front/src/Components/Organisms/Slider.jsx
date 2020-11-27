@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import ImgComp from "../Atoms/ImgComp";
-// import BackgroundImg from "../Atoms/BackgroundImg";
 import img1 from "./img/australie.jpg";
 import img2 from "./img/bresil.jpg";
 import img3 from "./img/chine.jpg";
@@ -10,12 +10,35 @@ import leftArrow from "./img/left-arrow.png";
 
 export default function Slider() {
   let sliderArr = [
-    <ImgComp src={img1} />,
-    <ImgComp src={img2} />,
-    <ImgComp src={img3} />,
+    <Link to={`/projects/23`}>
+      <ImgComp src={img1} />
+      <p className="legend">
+        Arkadia / DKO Architecture + Breathe Architecture <br />{" "}
+        <span>Complexe de logement bioclimatique à Alexandria, Australie.</span>
+      </p>
+    </Link>,
+    <Link to={`/projects/37`}>
+      <ImgComp src={img2} />
+      <p className="legend">
+        Village des enfants / Rosenbaum + Aleph Zero <br />{" "}
+        <span>
+          Ecole primaire au coeur d'une savanne tropical, dans le centre du
+          Brésil.
+        </span>
+      </p>
+    </Link>,
+    <Link to={`/projects/38`}>
+      <ImgComp src={img3} />
+      <p className="legend">
+        Qplex 12 / Fomwerk Architects + Aleph Zero <br />{" "}
+        <span>
+          Centre commerciale au coeur d'un complexe résidentiel à ShenZhen,
+          Chine.
+        </span>
+      </p>
+    </Link>,
   ];
   const [x, setX] = useState(0);
-  console.log("x1", x);
 
   const goLeft = () => {
     if (x === 0) {

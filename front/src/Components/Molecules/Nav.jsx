@@ -1,34 +1,32 @@
 import React, { useContext, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ContextAuth from "../Context/ContextAuth";
 
 export default function Nav() {
   const { state } = useContext(ContextAuth);
+
   const Logout = () => {
     localStorage.clear();
     window.location.href = "/";
   };
 
   useEffect(() => {
-    state.user && console.log("NAV state user:", state.user.firstName);
     return () => {};
-  }, [state]);
+  }, [state.isAuthenticated]);
 
-  if (state.isAuthenticated === true) {
+  if (state.isAuthenticated == true) {
     return (
       <nav>
         <ul className="nav-links">
           <Link to="/">
             <div className="login">
-              <p>accueil</p>
+              <p>Accueil</p>
             </div>
             {/* <li>Accueil</li> */}
           </Link>
           <Link to="/about">
             <li>A Propos</li>
-          </Link>
-          <Link to="/addproject">
-            <li>Ajouter un projets</li>
           </Link>
           <Link to="/projects">
             <li>Projets</li>
@@ -43,6 +41,7 @@ export default function Nav() {
       </nav>
     );
   }
+
   return (
     <nav>
       <ul className="nav-links">

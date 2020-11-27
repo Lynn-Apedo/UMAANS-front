@@ -1,89 +1,181 @@
-.profilContainer {
-  color: $umaans-green;
-  background-color: $umaans-beige;
-  display: grid;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: 10% 70%;
-  margin: 0%;
-  padding: 5% 0;
-
-  &_titlePage {
-    grid-column: 1/2;
-    grid-row: 2/3;
-
-    margin: 0 25%;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 20px;
+.bprofil {
+  @include media("<=phone") {
+    background-color: $umaans-beige;
+    height: 30vh;
+    // width: 100%;
   }
-  &_infoContainer {
-    grid-column: 2/3;
-    grid-row: 2/3;
+  &_profilContainer {
+    color: $umaans-green;
+    background-color: $umaans-beige;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 10% 70%;
+    margin: 0%;
+    padding: 5% 0;
+    @include media("<=phone") {
+      height: 28vh;
+      background-color: $umaans-green;
+      color: $umaans-beige;
+      position: absolute;
+      top: 8.5%;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 2px -5px 10px -5px rgba(0, 0, 0, 0.4);
+      grid-template-columns: 40% 70%;
+      grid-template-rows: 20% 70%;
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 40vh;
+    }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 0 5%;
-    &_profilName {
-      font-size: 18px;
+    &_titlePage {
+      grid-column: 1/2;
+      grid-row: 2/3;
+
+      margin: 0 25%;
+      text-transform: uppercase;
       font-weight: bold;
-    }
-    &_entrepriseName {
-      margin-bottom: 1.5%;
-    }
-  }
-}
-
-.savedProjectContainer {
-  color: $umaans-green;
-  display: grid;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: 20% 70%;
-  margin: 8% 0;
-
-  &_titlePage {
-    grid-column: 1/2;
-    grid-row: 2/3;
-
-    margin: 0 25%;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  &_projectsContainer {
-    grid-column: 2/3;
-    grid-row: 2/3;
-
-    display: flex;
-    // flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 0 5%;
-
-    &_projectContainer {
-      width: 45%;
-      margin-bottom: 7%;
-      //   background-color: lightcoral;
-      &_link {
-        text-decoration: none;
-        color: inherit;
+      font-size: 20px;
+      @include media("<=phone") {
+        margin: 3% 10%;
       }
-      &_img {
-        width: 100%;
-        height: 350px;
-        object-fit: cover;
+    }
+    &_infoContainer {
+      grid-column: 2/3;
+      grid-row: 2/3;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 5%;
+      @include media("<=phone") {
+        // border: 3px solid pink;
+        margin: 2% 10%;
       }
-      &_fiche {
-        margin: 3% 0;
-        &_country {
-          text-transform: uppercase;
-          opacity: 70%;
+      &_profilName {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      &_entrepriseName {
+        margin-bottom: 1.5%;
+      }
+      #btn-green {
+        border: 3px solid transparent;
+        padding: 1.3%;
+        width: 16%;
+        border-radius: 8px;
+        margin: 2% auto;
+        background-color: $umaans-green;
+        color: $umaans-beige;
+        @include media("<=phone") {
+          // border: 3px solid pink;
+          background-color: $umaans-beige;
+          color: $umaans-green;
+          width: 40%;
+          margin: 5% 0 0 0;
+          box-shadow: 1px 8px 32px -12px rgba(0, 0, 0, 0.47);
         }
-        &_titleArchitectes {
-          font-size: 18px;
-          margin-top: 1%;
+      }
+
+      #btn-green:hover {
+        color: $umaans-green;
+        background-color: $umaans-beige;
+        border: 3px solid $umaans-green;
+      }
+    }
+  }
+
+  &_savedProjectContainer {
+    color: $umaans-green;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 20% 70%;
+    margin: 8% 0;
+    @include media("<=phone") {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 40%;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 2px -5px 15px -5px rgba(230, 225, 203, 0.46);
+      background-color: #f6f4ee;
+    }
+
+    &_titlePage {
+      grid-column: 1/2;
+      grid-row: 2/3;
+
+      margin: 0 25%;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 20px;
+      @include media("<=phone") {
+        // border: 3px solid pink;
+        margin: 7% 10%;
+      }
+    }
+
+    &_projectsContainer {
+      grid-column: 2/3;
+      grid-row: 2/3;
+
+      display: flex;
+      // flex-direction: column;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 5%;
+      @include media("<=phone") {
+        // border: 3px solid pink;
+        flex-direction: column;
+        width: 100vw;
+        position: relative;
+        left: -5%;
+      }
+
+      &_projectContainer {
+        width: 45%;
+        margin-bottom: 7%;
+        //   background-color: lightcoral;
+        &_link {
+          text-decoration: none;
+          color: inherit;
+        }
+        &_img {
+          width: 100%;
+          height: 350px;
+          object-fit: cover;
+          @include media("<=phone") {
+            width: 100vw;
+          }
+        }
+        &_fiche {
+          margin: 3% 0;
+          @include media("<=phone") {
+            background-color: white;
+            margin: 0 20%;
+            padding: 15% 14%;
+            min-width: 80vw;
+            min-height: 22vh;
+            border-radius: 10px;
+            position: relative;
+            top: -30px;
+            box-shadow: 0px 9px 20px -5px rgba(0, 0, 0, 0.3);
+          }
+          &_country {
+            text-transform: uppercase;
+            opacity: 70%;
+          }
+          &_titleArchitectes {
+            font-size: 18px;
+            margin-top: 1%;
+          }
+          button {
+            @include media("<=phone") {
+              padding: 4%;
+              margin-top: 3%;
+            }
+          }
         }
       }
     }

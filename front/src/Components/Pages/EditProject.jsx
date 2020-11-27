@@ -1,115 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-export default function AddProject() {
-  const imgParDefaut =
-    "https://images.unsplash.com/photo-1501769214405-5e5ee5125a02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=698&q=80";
+export default function EditProject() {
+  const [editProject, setEditProject] = useState([]);
+  const { id } = useParams();
+  const history = useHistory();
 
-  const [addProject, setAddProject] = useState({
-    architect: "",
-    size: "",
-    year: "",
-    categoryId: parseInt("1"),
-    countryId: parseInt("1"),
-    title: "",
-    projectDescr: "",
-    mainPicture: imgParDefaut,
-  });
+  console.log("EDITPROJECT project:", editProject);
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
-    setAddProject({
-      ...addProject,
+    setEditProject({
+      ...editProject,
       [name]: value,
     });
   };
 
-  const history = useHistory();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      setAddProject({
-        ...addProject,
-        isSubmitting: true,
-        errorMessage: null,
-      });
+    const token = localStorage.getItem("token");
 
-      const token = localStorage.getItem("token");
-      await axios({
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        url: "/api/addproject",
-        data: addProject,
-      });
-      history.push("/profil");
-    } catch (error) {
-      console.log("SIGNUP 4");
-      console.log("SIGNUP erreur catch", error);
-      console.log("SIGNUP erreur catch2", error.response);
-
-      setAddProject({
-        ...addProject,
-        isSubmitting: false,
-        errorMessage: error.response.data.description,
-      });
-    }
+    await axios({
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      url: `/api/editproject/${id}`,
+      data: editProject,
+    });
+    history.push("/profil");
   };
 
   return (
     <>
-      <div className="baddproject">
-        <div className="baddproject_formContainer">
-          <h2 className="baddproject_formContainer_titlePage">
-            Ajouter un projet:
-          </h2>
+      <div className="bupdate">
+        <div className="bupdate_formContainer">
+          <h2 className="bupdate_formContainer_titlePage">EDITER</h2>
 
-          <form
-            onSubmit={handleSubmit}
-            className="baddproject_formContainer_form"
-          >
-            <label
-              htmlFor="architect"
-              className="baddproject_formContainer_labels"
-            >
+          <form onSubmit={handleSubmit} className="bupdate_formContainer_form">
+            <label htmlFor="architect" className="bupdate_formContainer_labels">
               Architecte(s) ou autres:
             </label>
             <input
               type="architect"
-              value={addProject.architect}
+              value={editProject.architect}
               name="architect"
               id="architect"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
             />
 
-            <label htmlFor="size" className="baddproject_formContainer_labels">
+            <label htmlFor="size" className="bupdate_formContainer_labels">
               Superficie du projet:
             </label>
             <input
               type="number"
-              value={addProject.size}
+              value={editProject.size}
               name="size"
               id="size"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
               min="0"
             />
 
-            <label htmlFor="year" className="baddproject_formContainer_labels">
+            <label htmlFor="year" className="bupdate_formContainer_labels">
               Année du projet:
             </label>
             <input
               type="number"
-              value={addProject.year}
+              value={editProject.year}
               name="year"
               id="year"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
               min="0"
@@ -117,15 +85,15 @@ export default function AddProject() {
 
             <label
               htmlFor="categoryId"
-              className="baddproject_formContainer_labels"
+              className="bupdate_formContainer_labels"
             >
               Catégorie du projet:
             </label>
             <select
               name="categoryId"
               id="categoryId"
-              className="baddproject_formContainer_inputs"
-              value={addProject.categoryId}
+              className="bupdate_formContainer_inputs"
+              value={editProject.categoryId}
               onChange={handleChange}
               required
             >
@@ -152,17 +120,14 @@ export default function AddProject() {
               </option>
             </select>
 
-            <label
-              htmlFor="countryId"
-              className="baddproject_formContainer_labels"
-            >
+            <label htmlFor="countryId" className="bupdate_formContainer_labels">
               Pays du projet:
             </label>
             <select
               name="countryId"
               id="countryId"
-              className="baddproject_formContainer_inputs"
-              value={addProject.countryId}
+              className="bupdate_formContainer_inputs"
+              value={editProject.countryId}
               onChange={handleChange}
               required
             >
@@ -204,53 +169,52 @@ export default function AddProject() {
               </option>
             </select>
 
-            <label htmlFor="title" className="baddproject_formContainer_labels">
+            <label htmlFor="title" className="bupdate_formContainer_labels">
               Titre du projet:
             </label>
             <input
               type="text"
-              value={addProject.title}
+              value={editProject.title}
               name="title"
               id="title"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
             />
 
             <label
               htmlFor="projectDescr"
-              className="baddproject_formContainer_labels"
+              className="bupdate_formContainer_labels"
             >
               Description:
             </label>
             <textarea
               type="text"
-              value={addProject.projectDescr}
+              value={editProject.projectDescr}
               name="projectDescr"
               id="projectDescr"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
             />
 
             <label
               htmlFor="mainPicture"
-              className="baddproject_formContainer_labels"
+              className="bupdate_formContainer_labels"
             >
               Photos (url):
             </label>
             <input
               type="text"
-              value={addProject.mainPicture}
+              value={editProject.mainPicture}
               name="mainPicture"
               id="mainPicture"
-              className="baddproject_formContainer_inputs"
+              className="bupdate_formContainer_inputs"
               onChange={handleChange}
               required
             />
 
-            {addProject.errorMessage}
-
+            {/* {error} */}
             <button
               type="submit"
               value="Envoyer"
@@ -261,6 +225,8 @@ export default function AddProject() {
             </button>
           </form>
         </div>
+
+        {/* <button onClick={deleteProject}>SUPPRIMER</button> */}
       </div>
     </>
   );

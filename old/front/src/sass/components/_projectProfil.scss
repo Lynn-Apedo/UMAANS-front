@@ -1,0 +1,72 @@
+.main {
+  color: $umaans-green;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 20% 70%;
+  margin: 8% 0;
+  @include media("<=phone") {
+    margin: 12% 0 0 0;
+    display: flex;
+    height: 100%;
+    background-color: whitesmoke;
+  }
+  &_titlePage {
+    grid-column: 1/2;
+    grid-row: 2/3;
+
+    margin: 0 25%;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    @include media("<=phone") {
+      display: none;
+    }
+  }
+  &_projectContainer {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin: 0 5%;
+    width: 60vw;
+    @include media("<=phone") {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      width: 100vw;
+    }
+
+    &_img {
+      width: 60vw;
+      height: 70vh;
+      object-fit: cover;
+      @include media("<=phone") {
+        width: 100vw;
+        // position: relative;
+        // left: -9%;
+      }
+    }
+    &_ficheProject {
+      @include media("<=phone") {
+        background-color: whitesmoke;
+        padding: 10% 10%;
+        border-radius: 15px 15px 0 0;
+        position: relative;
+        top: -5%;
+      }
+      .lighter {
+        @include media("<=phone") {
+          font-weight: 300;
+        }
+      }
+      button {
+        @include media("<=phone") {
+          margin-top: 10%;
+          padding: 4%;
+        }
+      }
+    }
+    &_archi,
+    &_titleBuilding {
+      font-weight: bold;
+    }
+  }
+}

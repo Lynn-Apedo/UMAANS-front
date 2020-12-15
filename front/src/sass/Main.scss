@@ -28,3 +28,16 @@ body {
   margin: 3% auto;
   width: 13%;
 }
+
+.originLink {
+  text-decoration: none;
+  font-weight: bold;
+  color: $umaans-green;
+  cursor: pointer;
+}
+.originLink:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: orangered;
+  cursor: pointer;
+}

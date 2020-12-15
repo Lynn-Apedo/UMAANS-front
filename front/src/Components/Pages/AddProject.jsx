@@ -14,8 +14,15 @@ export default function AddProject() {
     countryId: parseInt("1"),
     title: "",
     projectDescr: "",
-    mainPicture: imgParDefaut,
+    // mainPicture: imgParDefaut,
+    link: "",
   });
+
+  const [mainPicture, setMainPicture] = useState(null);	
+  //event.target.files[0]	
+  const handleChangeFile = (event) => {	
+    setMainPicture(event.target.files[0]);	
+  };
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
@@ -29,6 +36,17 @@ export default function AddProject() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      var data = new FormData();	
+      data.append("countryId", addProject.countryId);	
+      data.append("categoryId", addProject.categoryId);	
+      data.append("architect", addProject.architect);	
+      data.append("size", addProject.size);	
+      data.append("year", addProject.year);	
+      data.append("title", addProject.title);	
+      data.append("projectDescr", addProject.projectDescr);	
+      data.append("mainPicture", mainPicture);
+      data.append("link", addProject.link);
+
       setAddProject({
         ...addProject,
         isSubmitting: true,
@@ -43,7 +61,7 @@ export default function AddProject() {
           authorization: `Bearer ${token}`,
         },
         url: "/api/addproject",
-        data: addProject,
+        data: data,
       });
       history.push("/profil");
     } catch (error) {
@@ -240,16 +258,29 @@ export default function AddProject() {
               Photos (url):
             </label>
             <input
-              type="text"
-              value={addProject.mainPicture}
+              type="file"
               name="mainPicture"
               id="mainPicture"
+              className="baddproject_formContainer_inputs"
+              onChange={handleChangeFile}
+            />
+
+<label
+              htmlFor="link"
+              className="baddproject_formContainer_labels"
+            >
+              Lien vers la page d'origine de l'image:
+            </label>
+            <input
+              type="link"
+              value={addProject.link}
+              name="link"
+              id="link"
               className="baddproject_formContainer_inputs"
               onChange={handleChange}
               required
             />
 
-            {/* ajouter link */}
             {addProject.errorMessage}
 
             <button

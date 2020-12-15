@@ -67,6 +67,10 @@ export default function Project() {
               {project.title}
             </p>
             <p>{project.projectDescr}</p>
+            <br/>
+
+            <a href={project.link} target="blank" className="originLink">En savoir plus...</a>
+<br/>
 
             <button className="btn btnCard" onClick={deleteProject}>
               SUPPRIMER

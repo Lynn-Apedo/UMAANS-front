@@ -45,6 +45,11 @@ export default function Project() {
               {project.title}
             </p>
             <p className="lighter">{project.projectDescr}</p>
+            <br/>
+
+            <a href={project.link} target="blank" className="originLink">En savoir plus...</a>
+<br/>
+
             <Link to="/">
               <button className="btn btnCard">RETOUR</button>
             </Link>

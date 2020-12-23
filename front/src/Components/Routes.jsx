@@ -11,6 +11,7 @@ import ProjectProfil from "./Pages/ProjectProfil";
 import About from "./Pages/About";
 import Profil from "./Pages/Profil";
 import EditProject from "./Pages/EditProject";
+import EditUser from "./Pages/EditUser";
 
 export default function Routes() {
   return (
@@ -26,6 +27,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/editproject/:id">
         <EditProject />
+      </Route>
+      <Route exact path="/edituser/:id">
+        <EditUser />
       </Route>
       <Route exact path="/projects/:id">
         <Project />

@@ -60,6 +60,9 @@ export default function Profil() {
             <Link to="/addproject">
               <button id="btn-green">Ajouter un projets</button>
             </Link>
+            <Link to={`/edituser/${profils.id}`}>
+              <button id="btn-green">Modifier ses informations</button>
+            </Link>
           </div>
         </div>
 

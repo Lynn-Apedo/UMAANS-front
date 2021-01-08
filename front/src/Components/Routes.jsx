@@ -12,6 +12,10 @@ import About from "./Pages/About";
 import Profil from "./Pages/Profil";
 import EditProject from "./Pages/EditProject";
 import EditUser from "./Pages/EditUser";
+import AdminSignin from "./Pages/AdminSignin";
+import AddEvent from "./Pages/AddEvent";
+import Events from "./Pages/Events";
+import EditEvent from "./Pages/EditEvent";
 
 export default function Routes() {
   return (
@@ -42,6 +46,18 @@ export default function Routes() {
       </Route>
       <Route exact path="/signin">
         <Signin />
+      </Route>
+      <Route exact path="/adminsignin"> 
+        <AdminSignin />
+      </Route>
+      <Route exact path="/addevent">
+        <AddEvent />
+      </Route>
+      <Route exact path="/events">
+        <Events />
+      </Route>
+      <Route exact path="/editevent/:id">
+        <EditEvent />
       </Route>
       <Route exact path="/signup">
         <Signup />
